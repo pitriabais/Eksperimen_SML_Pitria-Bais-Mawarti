@@ -41,3 +41,4 @@ jobs:
 
         # Mengunggah hasil build docker ke repositori Docker Hub Pitria
         docker push "${{ secrets.DOCKER_HUB_USERNAME }}/heart-disease-model:latest"
+        
