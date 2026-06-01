@@ -10,7 +10,7 @@ os.environ['MLFLOW_TRACKING_USERNAME'] = 'pitriabais'
 os.environ['MLFLOW_TRACKING_PASSWORD'] = '70059272253e0f09e6d4e535f41a5ebf493db8ff'
 mlflow.set_tracking_uri('https://dagshub.com/pitriabais/Eksperimen_SML_Pitria-Bais-Mawarti.mlflow')
 
-# Aktifkan autolog sebelum melatih model
+# Aktifkan pencatatan otomatis
 mlflow.sklearn.autolog()
 
 def main():
@@ -22,18 +22,10 @@ def main():
     
     print("[INFO] Melatih ulang model via GitHub Actions...")
     model = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
+    
+    # MLflow akan otomatis membuat RUN di DagsHub dan menyimpan model lokal di folder 'mlruns'
     model.fit(X_train, y_train)
-    
-    active_run = mlflow.active_run()
-    if active_run:
-        run_id = active_run.info.run_id
-    else:
-        run_id = "default_run"
-        
-    print(f"[SUCCESS] Model berhasil dilatih dengan Run ID: {run_id}")
-    
-    with open("run_id.txt", "w") as f:
-        f.write(run_id)
+    print("[SUCCESS] Model berhasil dilatih!")
 
 if __name__ == "__main__":
     main()
