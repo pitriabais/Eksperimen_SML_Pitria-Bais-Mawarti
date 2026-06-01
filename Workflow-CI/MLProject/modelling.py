@@ -21,7 +21,7 @@ def main():
     y_train = train_df.iloc[:, -1]
     
     # Memulai pencatatan otomatis alur CI
-    with mlflow.start_run(run_name="CI_Automated_Retrain"):
+    with mlflow.start_run(run_name="CI_Automated_Retrain", nested=True):
         print("[INFO] Melatih ulang model via GitHub Actions...")
         
         model = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
