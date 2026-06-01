@@ -37,7 +37,7 @@ jobs:
     - name: Build and Push MLflow Docker Image
       run: |
         # Membangun docker image menggunakan perintah mlflow models build-docker
-        mlflow models build-docker -m "runs:/e39f882ab68b44e9a525887f8d5cd687/baseline_model" -n "${{ secrets.DOCKER_HUB_USERNAME }}/heart-disease-model:latest" --enable-mlserver
-        
+        mlflow models build-docker -m "runs:/e39f882ab68b44e9a525887f8d5cd687/baseline_model" -n "${{ secrets.DOCKER_HUB_USERNAME }}/heart-disease-model:latest"
+
         # Mengunggah hasil build docker ke repositori Docker Hub Pitria
         docker push "${{ secrets.DOCKER_HUB_USERNAME }}/heart-disease-model:latest"
